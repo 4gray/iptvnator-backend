@@ -1,0 +1,21 @@
+{
+  "name": "iptvnator-playlist-parser-api",
+  "version": "1.0.0",
+  "description": "IPTVnator PWA backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "NODE_ENV=dev node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "epg-parser": "^0.1.6",
+    "express": "^4.17.2",
+    "iptv-playlist-parser": "^0.8.0"
+  }
+}
