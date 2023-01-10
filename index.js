@@ -7,7 +7,9 @@ const cors = require("cors");
 const zlib = require("zlib");
 
 const isDev = process.env.NODE_ENV === "dev";
-const originUrl = isDev
+const originUrl = process.env.CLIENT_URL
+  ? process.env.CLIENT_URL
+  : isDev
   ? "http://localhost:4200"
   : "https://iptvnator.vercel.app";
 
@@ -20,17 +22,15 @@ const corsOptions = {
 };
 
 const https = require("https");
-const res = require("express/lib/response");
 const agent = new https.Agent({
   rejectUnauthorized: false,
 });
 
 app.get("/", (req, res) => res.send("Hello world"));
-app.get("/health-check", (req, res) => res.send("Yay, it works"));
 
 app.get("/parse", cors(corsOptions), async (req, res) => {
   const { url } = req.query;
-  console.log(url);
+  if (isDev) console.log(url);
   if (!url) return res.status(400).send("Missing url");
   const result = await handlePlaylistParse(url);
   if (result.status === 500) {
