@@ -1,15 +1,19 @@
 {
-  "name": "iptvnator-playlist-parser-api",
+  "name": "iptvnator-backend",
   "version": "1.0.0",
-  "description": "IPTVnator PWA backend",
+  "description": "IPTVnator web backend",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "NODE_ENV=dev node index.js"
   },
-  "keywords": [],
-  "author": "",
+  "homepage": "https://github.com/4gray/iptvnator-backend",
+    "author": {
+        "name": "4gray",
+        "email": "dev@artslab.info"
+    },
+  "keywords": ["expressjs", "iptv", "parser", "iptvnator", "m3u"],
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
