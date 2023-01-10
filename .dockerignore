@@ -1,0 +1,16 @@
+.git
+.gitignore
+.github
+.vscode
+.editorconfig
+.dockerignore
+.husky
+.vercel
+Dockerfile
+package-lock.json
+README.md
+dist
+node_modules
+build
+release
+vercel.json
