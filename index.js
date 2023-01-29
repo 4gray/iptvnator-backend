@@ -33,8 +33,8 @@ app.get("/parse", cors(corsOptions), async (req, res) => {
   if (isDev) console.log(url);
   if (!url) return res.status(400).send("Missing url");
   const result = await handlePlaylistParse(url);
-  if (result.status === 500) {
-    return res.status(500).send(result.message);
+  if (result.status) {
+    return res.status(result.status).send(result.message);
   }
   return res.send(result);
 });
@@ -45,7 +45,7 @@ app.get("/parse-xml", cors(corsOptions), async (req, res) => {
   if (!url) return res.status(400).send("Missing url");
   const result = await fetchEpgDataFromUrl(url);
   if (result.status === 500) {
-    return res.status(500).send(result.message);
+    return res.status(result.status).send(result.message);
   }
   return res.send(result);
 });
@@ -107,8 +107,15 @@ const handlePlaylistParse = (url) => {
         const playlistObject = createPlaylistObject(title, parsedPlaylist, url);
         return playlistObject;
       })
-      .catch(() => {
-        return { status: 500, message: "Error, something went wrong" };
+      .catch((error) => {
+        if (error.response) {
+          return {
+            status: error.response.status,
+            message: error.response.statusText,
+          };
+        } else {
+          return { status: 500, message: "Error, something went wrong" };
+        }
       });
   } catch (error) {
     return error;

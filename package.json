@@ -9,17 +9,23 @@
     "dev": "NODE_ENV=dev node index.js"
   },
   "homepage": "https://github.com/4gray/iptvnator-backend",
-    "author": {
-        "name": "4gray",
-        "email": "dev@artslab.info"
-    },
-  "keywords": ["expressjs", "iptv", "parser", "iptvnator", "m3u"],
+  "author": {
+    "name": "4gray",
+    "email": "dev@artslab.info"
+  },
+  "keywords": [
+    "expressjs",
+    "iptv",
+    "parser",
+    "iptvnator",
+    "m3u"
+  ],
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "^1.2.6",
     "cors": "^2.8.5",
     "epg-parser": "^0.1.6",
-    "express": "^4.17.2",
+    "express": "^4.18.2",
     "iptv-playlist-parser": "^0.8.0"
   }
 }
