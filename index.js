@@ -50,6 +50,26 @@ app.get("/parse-xml", cors(corsOptions), async (req, res) => {
   return res.send(result);
 });
 
+app.get("/xtream", cors(corsOptions), async (req, res) => {
+  const xtreamApiPath = "/player_api.php";
+  axios
+    .get(req.query.url + xtreamApiPath, {
+      params: req.query ?? {},
+    })
+    .then((result) => {
+      return res.send({
+        payload: result.data,
+        action: req.query?.action,
+      });
+    })
+    .catch((err) => {
+      return res.send({
+        message: err.response?.statusText ?? "Error: not found",
+        status: err.response?.status ?? 404,
+      });
+    });
+});
+
 const epgLoggerLabel = "[EPG Worker]";
 
 /**
