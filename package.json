@@ -26,6 +26,6 @@
     "cors": "^2.8.5",
     "epg-parser": "^0.1.6",
     "express": "^4.18.2",
-    "iptv-playlist-parser": "^0.8.0"
+    "iptv-playlist-parser": "github:4gray/iptv-playlist-parser"
   }
 }
