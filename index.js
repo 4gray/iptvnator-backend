@@ -70,6 +70,34 @@ app.get("/xtream", cors(corsOptions), async (req, res) => {
     });
 });
 
+app.get("/stalker", cors(corsOptions), async (req, res) => {
+  axios
+    .get(req.query.url, {
+      params: req.query ?? {},
+      headers: {
+        Cookie: `mac=${req.query.macAddress}`,
+        ...(req.query.token
+          ? {
+              Authorization: `Bearer ${req.query.token}`,
+            }
+          : {}),
+      },
+    })
+    .then((result) => {
+      console.log(result.data);
+      return res.send({
+        payload: result.data,
+        action: req.query?.action,
+      });
+    })
+    .catch((err) => {
+      return res.send({
+        message: err.response?.statusText ?? "Error: not found",
+        status: err.response?.status ?? 404,
+      });
+    });
+});
+
 const epgLoggerLabel = "[EPG Worker]";
 
 /**
